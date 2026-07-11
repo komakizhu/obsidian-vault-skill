@@ -1,13 +1,17 @@
 # Obsidian Vault Skill for AI Coding Agents (LLM-Wiki + OKF + Socratic Friction)
 
-An integration skill and rules kit for Gemini/Antigravity and other agentic coding assistants. It combines **Andrej Karpathy's LLM-Wiki** concept, **Google's Open Knowledge Format (OKF) v0.1** standard, and a **Socratic cognitive friction** loop designed to keep the user in the cognitive driver's seat and protect the vault against automated over-simplification.
+An integration skill and rules kit for agentic coding assistants (including **Claude Code**, **Gemini/Antigravity**, **Cursor**, **Windsurf**, and **GitHub Copilot**). 
 
-## Features
+It combines **Andrej Karpathy's LLM-Wiki** concept, **Google's Open Knowledge Format (OKF) v0.1** standard, and a **Socratic cognitive friction** loop designed to keep the user in the cognitive driver's seat and protect the vault against automated over-simplification.
+
+---
+
+## Key Features
 
 - **Portability (Google OKF v0.1)**: Formats all note frontmatter metadata into standard fields (`type`, `title`, `description`, `resource`, `tags`, `timestamp`) making your knowledge base interoperable across different AI agents.
 - **Socratic Interaction & Tension Preservation**: Prevents the agent from auto-merging opposing views or overwriting subjective insights. Forces the agent to explicitly report conceptual contradictions and obtain permission before making writes.
 - **Structure-Enforcing Rules (PARA + MOC)**: Rules for managing Projects, Areas, Resources, and Archives directories, and lightweight Maps of Content.
-- **Dynamic Vault Path Caching**: Auto-detects local vaults via `obsidian.json` or directory scanning and remembers the path to avoid hardcoding.
+- **Dynamic Vault Path Caching**: Auto-detects local vaults via `obsidian.json` (macOS, Windows, Linux) or directory scanning, caching the path to a standard configuration file (`~/.config/obsidian-vault/path.txt`).
 
 ---
 
@@ -33,48 +37,40 @@ obsidian-vault-skill/
 2. Paste it directly into the **root directory of your Obsidian vault** (e.g., inside your actual vault folder on your machine).
 3. (Optional) Open the copied `AGENTS.md` in Obsidian and customize the `creator` and other default frontmatter settings.
 
-### Step 2: Deploy the Agent Skill
-Copy the `obsidian-vault` directory to your agent's global customizations root. For Gemini/Antigravity, this is typically:
-- **macOS/Linux**: `~/.gemini/config/skills/obsidian-vault/`
-- **Windows**: `%USERPROFILE%\.gemini\config\skills\obsidian-vault\`
+### Step 2: Deploy the Detection Script
+1. Place the `detect_vault.py` script somewhere convenient on your machine (e.g. `~/.config/obsidian-vault/scripts/detect_vault.py`).
+2. Make it executable:
+   ```bash
+   chmod +x ~/.config/obsidian-vault/scripts/detect_vault.py
+   ```
 
-Make the detection script executable:
-```bash
-chmod +x ~/.gemini/config/skills/obsidian-vault/scripts/detect_vault.py
-```
+---
 
-### Step 3: Configure Global Redirection Rules
-Add the following rule to your global agent configurations at `~/.gemini/config/AGENTS.md` (create the file if it does not exist) so all agents automatically redirect to the vault on trigger words:
+## Step 3: Configure Your Agent
 
+### 1. Claude Code
+Add the redirection instructions to your global or local `CLAUDE.md` (e.g. `~/.config/claude/CLAUDE.md` or the `CLAUDE.md` in your project root):
 ```markdown
-# Global Agent Rules
+## Obsidian Vault Redirection
 
-## Obsidian Vault Integration & Redirection
-
-Whenever the user mentions their notes, Obsidian, or uses trigger phrases like:
-- "根据我的笔记" (According to my notes)
-- "根据我的ob" (According to my ob)
-- "根据我的obsidian" (According to my obsidian)
-- "根据ob" (According to ob)
-- "根据笔记" (According to notes)
-- "根据我的知识库" (According to my knowledge base)
-- "根据我的Obsidian库" (According to my Obsidian vault)
-- or any similar variations,
-
-**ALL AGENTS MUST AUTOMATICALLY FOLLOW THESE INSTRUCTIONS:**
-
-1. **Dynamic Path Detection & Redirection**:
-   - Immediately run the following script to get the active Obsidian vault directory path:
-     `python3 ~/.gemini/config/skills/obsidian-vault/scripts/detect_vault.py --get`
-   - Scope all your operations, searches, and context retrieval to the directory returned by the script.
-   - If the script fails or returns that no vault was detected, ask the user to provide their vault path, and save it by executing:
-     `python3 ~/.gemini/config/skills/obsidian-vault/scripts/detect_vault.py --set "<user_provided_path>"`
-     This path will be permanently remembered and returned by future `--get` queries.
-
-2. **Follow Local Vault Rules**:
-   - Once the vault path is determined, read the local rules file at `<vault_path>/AGENTS.md` (which you copied in Step 1).
-   - Adhere strictly to the rules specified there (PARA folder boundaries, Socratic friction, OKF schema, tension logging).
+Whenever the user mentions their notes, Obsidian, or trigger phrases like "根据我的笔记" / "根据我的ob", follow these instructions:
+1. Run `python3 ~/.config/obsidian-vault/scripts/detect_vault.py --get` to retrieve the active vault path.
+2. Scope your operations and searches to that directory. If no vault is found, prompt the user for the path and save it with `python3 ~/.config/obsidian-vault/scripts/detect_vault.py --set "<path>"`.
+3. Read the vault's local rules file at `<vault_path>/AGENTS.md` and follow them strictly.
 ```
+
+### 2. Cursor / Windsurf
+Put the custom instructions in your `.cursorrules` or `.windsurfrules` file:
+```text
+Obsidian Vault Redirection:
+- When matching keywords like "according to my notes" or "根据我的ob":
+  1. Execute `python3 ~/.config/obsidian-vault/scripts/detect_vault.py --get` to retrieve the active vault path.
+  2. Scope your search and operations to that path.
+  3. Load and strictly adhere to `<vault_path>/AGENTS.md` for writing/reading rules.
+```
+
+### 3. Gemini / Antigravity
+Copy the `obsidian-vault` directory to your agent's global customizations root (usually `~/.gemini/config/skills/obsidian-vault/`), and add the redirection rule to `~/.gemini/config/AGENTS.md`.
 
 ---
 

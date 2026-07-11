@@ -9,15 +9,18 @@ This skill connects your coding agent to your local Obsidian vault. It implement
 
 ## Vault Location & Detection
 
-The vault location is dynamically detected and cached on the machine. Query the active path before performing any file operations:
+The vault location is dynamically detected and cached on the machine. Always query the path before performing operations by executing the detection script:
 ```bash
-python3 ~/.gemini/config/skills/obsidian-vault/scripts/detect_vault.py --get
+python3 /path/to/obsidian-vault/scripts/detect_vault.py --get
 ```
 
-If the user provides a path, save and remember it:
-```bash
-python3 ~/.gemini/config/skills/obsidian-vault/scripts/detect_vault.py --set "/path/to/your/vault"
-```
+### Auto-Detection & Memory
+- **Automatic Search**: The script parses Obsidian's native config (`obsidian.json`) or searches common folders (`~/Documents`, `~/Desktop`, `~/`) to find vaults.
+- **Save/Remember Path**: If the user provides a path, save and remember it by running:
+  ```bash
+  python3 /path/to/obsidian-vault/scripts/detect_vault.py --set "/path/to/your/vault"
+  ```
+  This permanently saves it to `~/.config/obsidian-vault/path.txt`.
 
 ## The Workflow Contract
 

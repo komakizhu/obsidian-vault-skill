@@ -4,8 +4,8 @@ import json
 import argparse
 from pathlib import Path
 
-CONFIG_DIR = Path.home() / ".gemini" / "config"
-SAVED_PATH_FILE = CONFIG_DIR / "obsidian_vault_path.txt"
+CONFIG_DIR = Path.home() / ".config" / "obsidian-vault"
+SAVED_PATH_FILE = CONFIG_DIR / "path.txt"
 
 def get_platform_obsidian_json():
     home = Path.home()
