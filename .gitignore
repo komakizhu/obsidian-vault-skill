@@ -1,0 +1,18 @@
+# Local cache for Obsidian vault path (contains absolute user paths)
+obsidian_vault_path.txt
+obsidian_vault_path_backup.txt
+
+# Python temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Agent conversation logs/run data (if stored here)
+.system_generated/
+task.md
+implementation_plan.md
+walkthrough.md
