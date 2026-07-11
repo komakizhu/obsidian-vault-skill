@@ -72,6 +72,17 @@ Obsidian Vault Redirection:
 ### 3. Gemini / Antigravity
 Copy the `obsidian-vault` directory to your agent's global customizations root (usually `~/.gemini/config/skills/obsidian-vault/`), and add the redirection rule to `~/.gemini/config/AGENTS.md`.
 
+### 4. OpenAI Codex
+Codex natively loads rules from the global customizations root (`~/.gemini/config/AGENTS.md`) or the workspace root `AGENTS.md`. Add the following redirection instructions to the rules file:
+```markdown
+## Obsidian Vault Redirection
+
+Whenever the user mentions their notes, Obsidian, or trigger phrases like "根据我的笔记" / "根据我的ob", follow these instructions:
+1. Run `python3 ~/.config/obsidian-vault/scripts/detect_vault.py --get` to retrieve the active vault path.
+2. Scope your operations and searches to that directory. If no vault is found, prompt the user for the path and save it with `python3 ~/.config/obsidian-vault/scripts/detect_vault.py --set "<path>"`.
+3. Read the vault's local rules file at `<vault_path>/AGENTS.md` and follow them strictly.
+```
+
 ---
 
 ## How It Works in Practice
