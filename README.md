@@ -73,7 +73,7 @@ Obsidian Vault Redirection:
 Copy the `obsidian-vault` directory to your agent's global customizations root (usually `~/.gemini/config/skills/obsidian-vault/`), and add the redirection rule to `~/.gemini/config/AGENTS.md`.
 
 ### 4. OpenAI Codex
-Codex natively loads rules from the global customizations root (`~/.gemini/config/AGENTS.md`) or the workspace root `AGENTS.md`. Add the following redirection instructions to the rules file:
+Install the `obsidian-vault/` directory under Codex's skills directory (for example, `~/.codex/skills/obsidian-vault/`). Codex will discover the skill from its `SKILL.md` metadata and `agents/openai.yaml` UI configuration, where it is displayed as `笔记`. In the skill picker, invoke it as the notes/Obsidian skill; depending on the Codex build, the explicit command may appear as `/笔记` or `$obsidian-vault`. Requests such as `根据我的笔记查一下……` and `把这篇文章整理进我的 Obsidian 知识库` can also invoke it implicitly. If you also use project-level rules, add the following redirection instructions to the workspace `AGENTS.md`:
 ```markdown
 ## Obsidian Vault Redirection
 

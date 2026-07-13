@@ -1,9 +1,11 @@
 ---
 name: obsidian-vault
-description: Use when the user says "根据我的笔记", "根据我的ob", "根据我的obsidian", "根据ob", "根据笔记", "根据我的知识库", "根据我的Obsidian库", or mentions searching, querying, reading, creating, or managing notes in their Obsidian vault.
+description: Manage and reason over the user's local Obsidian vault while preserving the vault's rules, links, metadata, contradictions, and user approval boundaries. Use this skill whenever the user mentions Obsidian, their vault, notes, knowledge base, personal knowledge management, MOCs, PARA, or asks to search, query, read, summarize, organize, ingest, create, update, or manage notes. Trigger for Chinese requests such as "根据我的笔记", "根据我的知识库", "根据我的 Obsidian 库", "查一下我的笔记", "从我的知识库里找", "把这篇文章整理进 Obsidian", "写入我的笔记", "管理我的知识库", "我的笔记里有没有", "在我的笔记中搜索", "根据我的 ob", "根据我的 obsidian", or similar natural wording, even when the user does not explicitly say "vault" or "skill". Also trigger for equivalent English requests such as "according to my notes", "search my vault", or "add this to my Obsidian".
 ---
 
 # Obsidian Vault Integration (LLM-Wiki + OKF + Socratic Friction)
+
+For the reusable pattern behind this Chinese-trigger setup, see [Chinese trigger method](../references/chinese-trigger-method.md).
 
 This skill connects your coding agent to your local Obsidian vault. It implements **Andrej Karpathy's LLM-Wiki** incremental compilation, **Google's Open Knowledge Format (OKF) v0.1** metadata standards, and a **Socratic cognitive friction** workflow to preserve ideological tensions and prevent cognitive outsourcing.
 

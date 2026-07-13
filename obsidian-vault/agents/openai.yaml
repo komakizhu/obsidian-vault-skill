@@ -1,0 +1,7 @@
+interface:
+  display_name: "obsidian笔记管理-LLMWiki+OKF+PM3"
+  short_description: "搜索、整理和管理本地 Obsidian 知识库"
+  default_prompt: "Use $obsidian-vault to search, organize, or update my Obsidian notes."
+
+policy:
+  allow_implicit_invocation: true
