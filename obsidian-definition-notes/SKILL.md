@@ -8,6 +8,8 @@ description: |
 
 这是一个可独立调用的 Obsidian 子 skill。完整工作规范见 [Definition Notes](../obsidian-vault/references/definition-notes.md)，本文件负责触发和路由。
 
+本子 skill 必须遵守 vault 的 PM3（PARA + MOC + 333）模式：先读取 `AGENTS.md`，沿用既有 PARA 目录和 MOC，遵守 333 的目录、标签与元数据约束，不用通用知识库模板替代用户规则。
+
 ## 执行流程
 
 1. 读取并执行 `/Users/mac/.codex/skills/obsidian-vault/SKILL.md` 的 vault 检测流程。
