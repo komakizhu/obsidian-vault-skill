@@ -12,6 +12,7 @@ It combines **Andrej Karpathy's LLM-Wiki** concept, **Google's Open Knowledge Fo
 - **Socratic Interaction & Tension Preservation**: Prevents the agent from auto-merging opposing views or overwriting subjective insights. Forces the agent to explicitly report conceptual contradictions and obtain permission before making writes.
 - **Structure-Enforcing Rules (PARA + MOC)**: Rules for managing Projects, Areas, Resources, and Archives directories, and lightweight Maps of Content.
 - **Dynamic Vault Path Caching**: Auto-detects local vaults via `obsidian.json` (macOS, Windows, Linux) or directory scanning, caching the path to a standard configuration file (`~/.config/obsidian-vault/path.txt`).
+- **Definition Notes Sub-skill**: Generates batches of professional-term notes, searches the vault for related concepts, creates reliable Wikilinks, and proposes a lightweight terminology MOC when direct connections are insufficient.
 
 ---
 
@@ -22,11 +23,64 @@ obsidian-vault-skill/
 ├── .gitignore
 ├── README.md                # This setup guide
 ├── AGENTS.md                # [Template] Vault rules to copy into your Obsidian vault root
-└── obsidian-vault/
+├── references/
+│   └── definition-notes.md   # Shared workflow and frontmatter rules for definition notes
+├── obsidian-vault/
     ├── SKILL.md             # Skill instructions loaded by agents
     └── scripts/
         └── detect_vault.py  # Python script managing path discovery & caching
+└── obsidian-definition-notes/
+    └── SKILL.md              # Independently callable definition-notes sub-skill
 ```
+
+## Definition Notes Sub-skill
+
+The repository includes an independently callable `obsidian-definition-notes` sub-skill for building a connected glossary inside an existing vault.
+
+### What it does
+
+- Expands a request such as “关于 SKU 生成一批定义笔记” into a focused cluster of related terms.
+- Searches existing notes, aliases, MOCs, parent concepts, examples, and possible conflicts before drafting.
+- Produces definition notes with a consistent structure: one-sentence definition, purpose, core elements, examples, confusing neighbors, related notes, and unresolved questions.
+- Creates Wikilinks only when the relationship is supported by the vault context, labeling relationships such as `related`, `depends on`, `contrasts with`, or `example of`.
+- Suggests a terminology MOC only when it improves navigation and does not duplicate an existing MOC.
+- Shows the proposed files, definitions, links, MOC, and ambiguities before writing. It waits for explicit confirmation and never silently overwrites an existing note.
+
+### How to invoke it
+
+Use the skill's directory name as the explicit command where the agent supports slash commands:
+
+```text
+/obsidian-definition-notes 关于 SKU 生成一批定义笔记，放到 333 Resources 兴趣资源，并和已有笔记建立链接。
+```
+
+It can also be invoked implicitly by requests mentioning definition notes, professional terms, glossaries, terminology maps, or connecting newly generated concepts to existing Obsidian notes. The parent `obsidian-vault` skill routes these requests to the same workflow.
+
+### Frontmatter priority
+
+The vault's local `AGENTS.md` is authoritative. For vaults using the included template, `Topic` and `Subject` are YAML data fields; they must not be duplicated as `Topic/...` or `Subject/...` tags. Tags should remain limited to approved PARA, keyword, or explicitly requested namespaces.
+
+Example:
+
+```yaml
+---
+author: Komaki Zhu
+type: Concept
+Topic: 商品与库存管理
+Subject: 商品与库存管理
+status: seed
+tags:
+  - Resource/概念
+  - keyword/SKU
+aliases:
+created: 2026-07-15T00:00
+updated: 2026-07-15T00:00
+---
+```
+
+### Rollback and auditability
+
+The sub-skill writes only after confirmation, records important operations in `LLM Wiki Log.md`, and should create backups before correcting existing notes. Newly created notes can be rolled back by deleting the explicitly reported files; existing notes are not modified unless the user approves that change.
 
 ---
 
