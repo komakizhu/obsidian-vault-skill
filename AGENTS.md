@@ -1,8 +1,9 @@
 ---
 creator: AI Assistant
 cover:
-source:
+resource:
 type: Meta
+description:
 Topic: MOC Knowledge Index
 Subject: System Architecture and Navigation
 status: fruit
@@ -33,21 +34,22 @@ Do not create folders merely for a topic, author, discipline, or terminology clu
 
 ---
 
-## 2. Frontmatter Schema (Google OKF v0.1 Standard)
+## 2. Frontmatter Schema (PM3 + selected OKF fields)
 
-Every note created or modified by the agent must conform to the **Open Knowledge Format (OKF) v0.1** metadata standards for interoperability:
+Every note created or modified by the agent must follow the vault's PM3 schema. Keep only these three compatible OKF fields: `creator`, `description`, and `resource`. Do not add OKF-only fields such as `title`, `timestamp`, or `creator` under another name.
 
 ```yaml
 ---
-type: Concept / Article / Project / MOC / Area  # Standard OKF type
-title: Note Title                                # Standard OKF title
-description: 1-sentence summary of the note     # Standard OKF description
-resource: https://... (original URL or source)   # Standard OKF source reference
-tags: [para-tag, theme-tag]                      # Mapped tags (complying with 333 rule)
-timestamp: YYYY-MM-DDTHH:MM:SSZ                  # ISO timestamp of last update
-# Custom keys:
 creator: [Your Name]
+description: 1-sentence summary of the note
+resource: https://... (original URL or source)
+cover:
+type: Concept / Article / Project / MOC / Area
+Topic: Broad topic
+Subject: Subject
 status: seed / growing / fruit / unfocused       # Status tracking
+tags: [para-tag, keyword-tag]
+aliases:
 created: YYYY-MM-DDTHH:MM
 updated: YYYY-MM-DDTHH:MM
 ---

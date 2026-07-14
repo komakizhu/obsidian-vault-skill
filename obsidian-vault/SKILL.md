@@ -42,15 +42,16 @@ When the user drops a new source or clippings file and asks you to process it:
 2.  **Draft Meta**: Draft the frontmatter using the vault's `AGENTS.md` schema first. The generic OKF fields below are fallback guidance only and must not override local rules:
     ```yaml
     ---
-    type: Concept / Article / Project / MOC / Area
-    title: Note Title
+    creator: AI Assistant
     description: 1-sentence summary of the note
     resource: https://... (original URL or source link)
-    tags: [para-tag, theme-tag]
-    timestamp: YYYY-MM-DDTHH:MM:SSZ
-    # Custom keys required by AGENTS.md:
-    creator: AI Assistant
+    cover:
+    type: Concept / Article / Project / MOC / Area
+    Topic: Broad topic
+    Subject: Subject
     status: seed / growing / fruit
+    tags: [para-tag, keyword-tag]
+    aliases:
     created: YYYY-MM-DDTHH:MM
     updated: YYYY-MM-DDTHH:MM
     ---

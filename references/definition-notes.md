@@ -26,9 +26,10 @@ Each definition note must use the vault's `AGENTS.md` frontmatter. The vault-loc
 
 ```yaml
 ---
-author: Komaki Zhu
+creator: Komaki Zhu
 cover:
-source:
+description: <one-sentence summary>
+resource:
 type: Concept
 Topic: <broad topic>
 Subject: <subject>
@@ -42,7 +43,7 @@ updated: <YYYY-MM-DDTHH:MM>
 ---
 ```
 
-`Topic` and `Subject` are YAML data fields, not automatic tags. Never copy them into `tags` as `Topic/...` or `Subject/...`. Use `tags` only for the vault's approved PARA, keyword, or other explicitly requested tag namespaces. Do not invent a new domain tag when the same information already belongs in `Topic` or `Subject`.
+`creator`, `description`, and `resource` are the only retained OKF-compatible fields. `Topic` and `Subject` are YAML data fields, not automatic tags. Never copy them into `tags` as `Topic/...` or `Subject/...`. Use `tags` only for the vault's approved PARA, keyword, or other explicitly requested tag namespaces. Do not invent a new domain tag when the same information already belongs in `Topic` or `Subject`.
 
 Then write:
 
