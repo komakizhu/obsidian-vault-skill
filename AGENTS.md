@@ -85,7 +85,7 @@ To avoid "cognitive outsourcing" (letting the AI do all the thinking) and "prema
 
 ## 5. Tag and Status Conventions
 
--   **333 Rule**: Keep folder depth, tag depth, and Markdown heading depth shallow, generally no more than three levels. Keep the main tag dimensions limited to PARA directory, subject, and keyword. When a note becomes oversized or covers multiple topics, split it into smaller notes and connect them with Wikilinks and MOCs instead of adding deeper nesting. Reuse existing tags before proposing new ones.
+-   **333 Rule**: Keep folder depth, tag depth, and Markdown heading depth shallow, generally no more than three levels. Keep the main tag dimensions limited to directory and keyword. Use YAML frontmatter `status` for state and do not generate `Status/...` tags automatically. When a note becomes oversized or covers multiple topics, split it into smaller notes and connect them with Wikilinks and MOCs instead of adding deeper nesting. Reuse existing tags before proposing new ones.
 
 For new and updated notes, use YAML `status` as the authoritative state field. Older notes may contain `Status/...` tags, but agents must not generate or migrate those tags automatically unless the user explicitly requests it.
 -   **Note Status**:
