@@ -9,10 +9,14 @@
 ## 核心能力
 
 - **Obsidian 库管理**：搜索、查询、整理、创建和更新本地笔记。
-- **PARA + MOC 结构**：遵守 Projects、Areas、Resources、Archives 目录和轻量 MOC 规则。
+- **PM3 知识库模式**：这是本项目对用户知识库组织方式的命名，结合 PARA 的 Projects、Areas、Resources、Archives 目录、轻量 MOC，以及用户的 333 原则，用于约束目录、标签和元数据。
 - **人工确认机制**：写入前展示文件清单、链接方案、冲突和待确认项。
 - **动态 Vault 检测**：通过 `obsidian.json` 或常见目录自动发现 vault，并缓存路径。
 - **定义笔记子 skill**：批量生成专业术语定义笔记，搜索已有概念并建立可靠双链。
+
+### PM3
+
+**PM3** 是本 skill 所遵循的知识库组织模式名称：**PARA + MOC + 333**。PARA 提供四个顶层区域，MOC 提供轻量导航，333 原则约束目录深度、标签深度和元数据增长。Agent 必须先读取 vault 的 `AGENTS.md`，遵守用户具体的 PM3 规则，不能用普通 PARA 模板替代。
 
 ## 仓库结构
 

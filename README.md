@@ -12,9 +12,13 @@ It combines **Andrej Karpathy's LLM-Wiki** concept, **Google's Open Knowledge Fo
 
 - **Portability (Google OKF v0.1)**: Formats all note frontmatter metadata into standard fields (`type`, `title`, `description`, `resource`, `tags`, `timestamp`) making your knowledge base interoperable across different AI agents.
 - **Socratic Interaction & Tension Preservation**: Prevents the agent from auto-merging opposing views or overwriting subjective insights. Forces the agent to explicitly report conceptual contradictions and obtain permission before making writes.
-- **Structure-Enforcing Rules (PARA + MOC)**: Rules for managing Projects, Areas, Resources, and Archives directories, and lightweight Maps of Content.
+- **PM3 Knowledge-Base Model**: The repository's named organizational model, combining PARA's Projects/Areas/Resources/Archives layout, lightweight MOCs, and the user's 333 principle for directory, tag, and metadata discipline.
 - **Dynamic Vault Path Caching**: Auto-detects local vaults via `obsidian.json` (macOS, Windows, Linux) or directory scanning, caching the path to a standard configuration file (`~/.config/obsidian-vault/path.txt`).
 - **Definition Notes Sub-skill**: Generates batches of professional-term notes, searches the vault for related concepts, creates reliable Wikilinks, and proposes a lightweight terminology MOC when direct connections are insufficient.
+
+### PM3
+
+**PM3** is the name of the knowledge-base model this skill is designed to preserve: **PARA + MOC + 333**. PARA provides the four top-level areas, MOCs provide lightweight navigation, and the 333 principle constrains folder depth, tag depth, and metadata growth. The agent must read the vault's `AGENTS.md` and follow the user's concrete PM3 rules rather than substituting a generic PARA implementation.
 
 ---
 

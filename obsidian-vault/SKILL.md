@@ -1,7 +1,7 @@
 ---
 name: Obsidian 库
 description: |
-  管理和分析用户的本地 Obsidian 库，同时保留库的规则、链接、元数据、矛盾以及用户审核边界。当用户提到 Obsidian、他们的库、笔记、知识库、个人知识管理、MOC、PARA，或要求搜索、查询、阅读、总结、整理、导入、创建、更新或管理笔记时使用。支持中文口语化触发（如“根据我的笔记”、“管理我的知识库”等）以及对应的英文请求。
+  管理和分析用户的本地 Obsidian 库，同时保留库的 PM3 规则、链接、元数据、矛盾以及用户审核边界。当用户提到 Obsidian、他们的库、笔记、知识库、个人知识管理、MOC、PARA、PM3，或要求搜索、查询、阅读、总结、整理、导入、创建、更新或管理笔记时使用。支持中文口语化触发（如“根据我的笔记”、“管理我的知识库”等）以及对应的英文请求。
 ---
 
 # Obsidian 库
@@ -34,7 +34,7 @@ python3 /path/to/obsidian-vault/scripts/detect_vault.py --get
 ## The Workflow Contract
 
 ### 1. Read the Local Rules First
-Once the vault path is determined (referred to as `<vault_path>`), you **MUST** locate and read `<vault_path>/AGENTS.md` to load the vault-specific conventions (e.g. PARA directories, 333 tagging rule, state rules).
+Once the vault path is determined (referred to as `<vault_path>`), you **MUST** locate and read `<vault_path>/AGENTS.md` to load the vault-specific PM3 conventions (PARA directories, lightweight MOCs, 333 tagging rule, metadata and state rules).
 
 ### 2. Ingest Workflow (Socratic Friction & OKF Standard)
 When the user drops a new source or clippings file and asks you to process it:
@@ -58,7 +58,7 @@ When the user drops a new source or clippings file and asks you to process it:
 3.  **Identify Tension Points**: Compare the source with existing notes. Define **at least 2 conceptual tensions or contradictions** between the new source and your existing notes.
 4.  **Dialogue Check**: Present the summary, the proposed note title/path, and the tension points to the user. **Wait for user confirmation before writing the file.**
 5.  **Write and Log**: Once approved:
-    - Write the markdown file to its target PARA folder.
+    - Write the markdown file to its target PM3/PARA folder.
     - Append an operation log entry to `<vault_path>/LLM Wiki Log.md`.
 
 ### 3. Query Workflow
