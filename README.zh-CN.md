@@ -16,7 +16,7 @@
 
 ### PM3
 
-**PM3** 是本 skill 所遵循的知识库组织模式名称：**PARA + MOC + 333**。PARA 提供四个顶层区域，MOC 提供轻量导航，333 原则约束目录深度、标签深度和元数据增长。Agent 必须先读取 vault 的 `AGENTS.md`，遵守用户具体的 PM3 规则，不能用普通 PARA 模板替代。
+**PM3** 是本 skill 所遵循的知识库组织模式名称：**PARA + MOC + 333**。PARA 提供四个顶层区域，MOC 提供轻量导航，333 原则约束文件夹、标签、标题和内容拆分。主要标签维度保持目录、关键词；状态使用 YAML `status`，不自动生成 `Status/...` 标签。Agent 必须先读取 vault 的 `AGENTS.md`，遵守用户具体的 PM3 规则，不能用普通 PARA 模板替代。
 
 ## 仓库结构
 
@@ -71,6 +71,8 @@ obsidian-vault-skill/
 - `Topic`、`Subject`、`status` 是 YAML 数据字段；
 - 不得把它们重复写成 `Topic/...`、`Subject/...` 或 `Status/...` 标签；
 - `tags` 只使用已批准的 PARA、keyword 或用户明确要求的命名空间。
+
+OKF 仅作为兼容性参考，不覆盖本地 PM3 schema。不要按主题、作者、学科或术语簇不断新建文件夹；优先使用已有 PARA 目录、YAML 字段、标签、双链和 MOC。
 
 示例：
 

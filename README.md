@@ -10,7 +10,7 @@ It combines **Andrej Karpathy's LLM-Wiki** concept, **Google's Open Knowledge Fo
 
 ## Key Features
 
-- **Portability (Google OKF v0.1)**: Formats all note frontmatter metadata into standard fields (`type`, `title`, `description`, `resource`, `tags`, `timestamp`) making your knowledge base interoperable across different AI agents.
+- **Selected OKF Compatibility**: Retains only `creator`, `description`, and `resource` from the generic OKF vocabulary; the vault's local PM3 schema remains authoritative.
 - **Socratic Interaction & Tension Preservation**: Prevents the agent from auto-merging opposing views or overwriting subjective insights. Forces the agent to explicitly report conceptual contradictions and obtain permission before making writes.
 - **PM3 Knowledge-Base Model**: The repository's named organizational model, combining PARA's Projects/Areas/Resources/Archives layout, lightweight MOCs, and the user's 333 principle for directory, tag, and metadata discipline.
 - **Dynamic Vault Path Caching**: Auto-detects local vaults via `obsidian.json` (macOS, Windows, Linux) or directory scanning, caching the path to a standard configuration file (`~/.config/obsidian-vault/path.txt`).
@@ -32,9 +32,9 @@ obsidian-vault-skill/
 ├── references/
 │   └── definition-notes.md   # Shared workflow and frontmatter rules for definition notes
 ├── obsidian-vault/
-    ├── SKILL.md             # Skill instructions loaded by agents
-    └── scripts/
-        └── detect_vault.py  # Python script managing path discovery & caching
+│   ├── SKILL.md             # Skill instructions loaded by agents
+│   └── scripts/
+│       └── detect_vault.py  # Python script managing path discovery & caching
 └── obsidian-definition-notes/
     └── SKILL.md              # Independently callable definition-notes sub-skill
 ```
