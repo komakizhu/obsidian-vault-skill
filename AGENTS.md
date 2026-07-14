@@ -22,12 +22,14 @@ Core Philosophy: **The AI is a Socratic facilitator, librarian, and sounding boa
 
 ## 1. Vault Directory Structure (PARA)
 
-The vault strictly uses the PARA (Projects, Areas, Resources, Archives) layout. Do not create new top-level directories:
+The vault uses the PM3 model (**PARA + MOC + 333**). PARA provides the four top-level areas, MOCs provide lightweight navigation, and 333 limits structural complexity. Do not create new top-level directories or topic-based folder trees:
 
 *   **`000 Projects 短期目标`**: Contains active projects, deliverables, essays in progress, video scripts, course tasks, and immediate goals.
 *   **`222 Areas 长期目标`**: Contains long-term research interests, essays, inspirations, philosophy, aesthetic notes, and ongoing areas of personal growth.
 *   **`333 Resources 兴趣资源`**: Contains reference materials, tool configs, method documentation, web clippings, and general interest resources.
 *   **`444 Archives`**: Contains completed projects, deprecated files, templates, assets, and historic notes.
+
+Do not create folders merely for a topic, author, discipline, or terminology cluster when existing PARA folders, tags, YAML properties, Wikilinks, or MOCs can express the relationship.
 
 ---
 
@@ -74,14 +76,16 @@ To avoid "cognitive outsourcing" (letting the AI do all the thinking) and "prema
 ## 4. MOC (Map of Content) & Linking Rules
 
 - **Use Wikilinks**: Link concepts using standard Obsidian wikilinks: `[[Note Title]]`.
-- **Maintain Existing MOCs**: Update existing `-MOC` index files rather than creating new ones. Suggest a new MOC only if an area grows beyond 5 related notes and existing MOCs cannot accommodate it.
+- **Maintain Existing MOCs**: Update existing `-MOC` index files rather than creating new ones. Suggest a new MOC when there is a clear reading path, concept hierarchy, or workflow and existing MOCs cannot naturally accommodate it. Five related notes is only a heuristic, not a hard gate. Keep new MOCs lightweight and obtain confirmation before writing.
 - **MOC Layout**: Keep MOC pages lightweight. Focus on navigation list, key backlinks, and Dataview queries rather than long essays.
 
 ---
 
 ## 5. Tag and Status Conventions
 
--   **333 Tagging Rule**: Keep tags organized in a maximum of three levels (e.g. `#Project/creation/theory`). Reuse existing tags before proposing new ones.
+-   **333 Rule**: Keep folder depth, tag depth, and Markdown heading depth shallow, generally no more than three levels. Keep the main tag dimensions limited to directory, subject, and status. When a note becomes oversized or covers multiple topics, split it into smaller notes and connect them with Wikilinks and MOCs instead of adding deeper nesting. Reuse existing tags before proposing new ones.
+
+For new and updated notes, use YAML `status` as the authoritative state field. Older notes may contain `Status/...` tags, but agents must not generate or migrate those tags automatically unless the user explicitly requests it.
 -   **Note Status**:
     -   `seed`: Initial raw idea, clip, or question.
     -   `growing`: Actively edited, researched, or drafted.

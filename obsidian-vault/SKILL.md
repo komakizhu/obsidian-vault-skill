@@ -14,7 +14,7 @@ This skill connects your coding agent to your local Obsidian vault. It implement
 
 When the user asks to define a professional term, generate a batch of definition notes, or connect a term to existing notes, load and follow [Definition Notes](./references/definition-notes.md). Treat requests such as “给我生成 SKU 的定义笔记”“放到 xxx 文件夹”“和其他笔记联结起来” as this workflow, even when the user does not mention a sub-skill. This workflow is also independently available as `/obsidian-definition-notes`.
 
-The generator may create or update a terminology MOC/navigation note when direct links are sparse or the requested set contains multiple related terms. It must detect the vault and read `AGENTS.md` first, show a proposed file list and link plan, and wait for confirmation before writing. Existing notes are never overwritten silently.
+The generator may create or update a terminology MOC/navigation note when there is a clear reading path, concept hierarchy, or workflow and existing MOCs cannot naturally contain it. A five-note count is only a heuristic, never a hard gate. It must detect the vault and read `AGENTS.md` first, show a proposed file list and link plan, and wait for confirmation before writing. Existing notes are never overwritten silently.
 
 ## Vault Location & Detection
 
@@ -34,7 +34,7 @@ python3 /path/to/obsidian-vault/scripts/detect_vault.py --get
 ## The Workflow Contract
 
 ### 1. Read the Local Rules First
-Once the vault path is determined (referred to as `<vault_path>`), you **MUST** locate and read `<vault_path>/AGENTS.md` to load the vault-specific PM3 conventions (PARA directories, lightweight MOCs, 333 tagging rule, metadata and state rules).
+Once the vault path is determined (referred to as `<vault_path>`), you **MUST** locate and read `<vault_path>/AGENTS.md` to load the vault-specific PM3 conventions (PARA directories, lightweight MOCs, 333 structure rules, metadata and state rules). Do not create topic-based folders when an existing PARA folder, tags, YAML properties, links, or MOCs can express the relationship.
 
 ### 2. Ingest Workflow (Socratic Friction & OKF Standard)
 When the user drops a new source or clippings file and asks you to process it:
@@ -58,7 +58,7 @@ When the user drops a new source or clippings file and asks you to process it:
 3.  **Identify Tension Points**: Compare the source with existing notes. Define **at least 2 conceptual tensions or contradictions** between the new source and your existing notes.
 4.  **Dialogue Check**: Present the summary, the proposed note title/path, and the tension points to the user. **Wait for user confirmation before writing the file.**
 5.  **Write and Log**: Once approved:
-    - Write the markdown file to its target PM3/PARA folder.
+    - Write the markdown file to its target PM3/PARA folder. Do not create a new folder merely for a topic, author, discipline, or terminology cluster.
     - Append an operation log entry to `<vault_path>/LLM Wiki Log.md`.
 
 ### 3. Query Workflow

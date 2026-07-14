@@ -7,7 +7,7 @@ Use this workflow for batches of professional-term definition notes.
 Extract:
 
 - terms and desired count (expand the term into a useful cluster when the user says “一批”);
-- target folder, preserving the vault's naming and PARA conventions;
+- target PARA folder, preserving the vault's naming and PM3 conventions; do not create a topic folder merely to hold the generated cluster;
 - intended audience and domain, if supplied;
 - whether the user wants only notes, or also a navigation/MOC note.
 
@@ -18,7 +18,7 @@ If a term is ambiguous, list the candidate meanings and choose the one best supp
 1. Detect the vault and read `<vault_path>/AGENTS.md` before inspecting or writing anything.
 2. Search existing notes for each term, aliases, abbreviations, parent concepts, examples, metrics, and likely related notes. Prefer existing MOCs and indexes as entry points.
 3. Do not invent links merely because two terms sound similar. Classify each proposed link as `related`, `depends on`, `contrasts with`, `example of`, or `used by`.
-4. If there are too few reliable direct connections, create a terminology MOC with a table of terms, one-line meanings, and links. A MOC is a fallback for discoverability, not evidence of a semantic relationship.
+4. If the terms form a clear reading path, concept hierarchy, or workflow and existing MOCs cannot naturally contain it, propose a lightweight terminology MOC with a table of terms, one-line meanings, and links. A five-note count is only a heuristic, not a hard gate. A MOC is for discoverability, not evidence of a semantic relationship.
 
 ## Note template
 
@@ -72,6 +72,8 @@ Then write:
 ```
 
 Keep uncertainty explicit. If no reliable source or existing note supports a claim, mark it as `待确认` rather than presenting it as fact.
+
+Apply 333 to the note itself: keep heading nesting shallow, and split an oversized or multi-topic note into separate notes connected by Wikilinks instead of adding more heading levels. Use the existing PARA folder; do not create folders for topics, authors, disciplines, or terminology clusters.
 
 ## Proposal and write gate
 
