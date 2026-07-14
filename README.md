@@ -64,13 +64,16 @@ It can also be invoked implicitly by requests mentioning definition notes, profe
 
 ### Frontmatter priority
 
-The vault's local `AGENTS.md` is authoritative. For vaults using the included template, `Topic` and `Subject` are YAML data fields; they must not be duplicated as `Topic/...` or `Subject/...` tags. Tags should remain limited to approved PARA, keyword, or explicitly requested namespaces.
+The vault's local `AGENTS.md` is authoritative. For vaults using the included template, `creator`, `description`, and `resource` are the retained OKF-compatible fields. `Topic`, `Subject`, and `status` are YAML data fields; they must not be duplicated as `Topic/...`, `Subject/...`, or `Status/...` tags. Tags should remain limited to approved PARA, keyword, or explicitly requested namespaces.
 
 Example:
 
 ```yaml
 ---
-author: Komaki Zhu
+creator: Komaki Zhu
+description:
+resource:
+cover:
 type: Concept
 Topic: 商品与库存管理
 Subject: 商品与库存管理

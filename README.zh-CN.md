@@ -67,15 +67,19 @@ obsidian-vault-skill/
 
 你的 vault 中的 `AGENTS.md` 优先级最高。对于使用本项目规则模板的 vault：
 
-- `Topic` 和 `Subject` 是 YAML 数据字段；
-- 不得把它们重复写成 `Topic/...` 或 `Subject/...` 标签；
+- `creator`、`description`、`resource` 是保留的 OKF 兼容字段；
+- `Topic`、`Subject`、`status` 是 YAML 数据字段；
+- 不得把它们重复写成 `Topic/...`、`Subject/...` 或 `Status/...` 标签；
 - `tags` 只使用已批准的 PARA、keyword 或用户明确要求的命名空间。
 
 示例：
 
 ```yaml
 ---
-author: Komaki Zhu
+creator: Komaki Zhu
+description:
+resource:
+cover:
 type: Concept
 Topic: 商品与库存管理
 Subject: 商品与库存管理
