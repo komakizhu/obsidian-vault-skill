@@ -1,5 +1,7 @@
 # Obsidian Vault Skill for AI Coding Agents (LLM-Wiki + OKF + Socratic Friction)
 
+[简体中文](README.zh-CN.md)
+
 An integration skill and rules kit for agentic coding assistants (including **Claude Code**, **Gemini/Antigravity**, **Cursor**, **Windsurf**, and **GitHub Copilot**). 
 
 It combines **Andrej Karpathy's LLM-Wiki** concept, **Google's Open Knowledge Format (OKF) v0.1** standard, and a **Socratic cognitive friction** loop designed to keep the user in the cognitive driver's seat and protect the vault against automated over-simplification.
