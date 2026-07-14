@@ -1,13 +1,20 @@
 ---
-name: obsidian-vault
-description: Manage and reason over the user's local Obsidian vault while preserving the vault's rules, links, metadata, contradictions, and user approval boundaries. Use this skill whenever the user mentions Obsidian, their vault, notes, knowledge base, personal knowledge management, MOCs, PARA, or asks to search, query, read, summarize, organize, ingest, create, update, or manage notes. Trigger for Chinese requests such as "根据我的笔记", "根据我的知识库", "根据我的 Obsidian 库", "查一下我的笔记", "从我的知识库里找", "把这篇文章整理进 Obsidian", "写入我的笔记", "管理我的知识库", "我的笔记里有没有", "在我的笔记中搜索", "根据我的 ob", "根据我的 obsidian", or similar natural wording, even when the user does not explicitly say "vault" or "skill". Also trigger for equivalent English requests such as "according to my notes", "search my vault", or "add this to my Obsidian".
+name: Obsidian 库
+description: |
+  管理和分析用户的本地 Obsidian 库，同时保留库的规则、链接、元数据、矛盾以及用户审核边界。当用户提到 Obsidian、他们的库、笔记、知识库、个人知识管理、MOC、PARA，或要求搜索、查询、阅读、总结、整理、导入、创建、更新或管理笔记时使用。支持中文口语化触发（如“根据我的笔记”、“管理我的知识库”等）以及对应的英文请求。
 ---
 
-# Obsidian Vault Integration (LLM-Wiki + OKF + Socratic Friction)
+# Obsidian 库
 
 For the reusable pattern behind this Chinese-trigger setup, see [Chinese trigger method](../references/chinese-trigger-method.md).
 
 This skill connects your coding agent to your local Obsidian vault. It implements **Andrej Karpathy's LLM-Wiki** incremental compilation, **Google's Open Knowledge Format (OKF) v0.1** metadata standards, and a **Socratic cognitive friction** workflow to preserve ideological tensions and prevent cognitive outsourcing.
+
+## Definition Note Generator
+
+When the user asks to define a professional term, generate a batch of definition notes, or connect a term to existing notes, load and follow [Definition Notes](./references/definition-notes.md). Treat requests such as “给我生成 SKU 的定义笔记”“放到 xxx 文件夹”“和其他笔记联结起来” as this workflow, even when the user does not mention a sub-skill. This workflow is also independently available as `/obsidian-definition-notes`.
+
+The generator may create or update a terminology MOC/navigation note when direct links are sparse or the requested set contains multiple related terms. It must detect the vault and read `AGENTS.md` first, show a proposed file list and link plan, and wait for confirmation before writing. Existing notes are never overwritten silently.
 
 ## Vault Location & Detection
 
@@ -32,7 +39,7 @@ Once the vault path is determined (referred to as `<vault_path>`), you **MUST** 
 ### 2. Ingest Workflow (Socratic Friction & OKF Standard)
 When the user drops a new source or clippings file and asks you to process it:
 1.  **Search**: Use the `grep_search` tool inside `<vault_path>/` to find potentially related notes, overlapping concepts, or MOCs.
-2.  **Draft OKF Meta**: Draft the frontmatter using Google OKF v0.1 fields:
+2.  **Draft Meta**: Draft the frontmatter using the vault's `AGENTS.md` schema first. The generic OKF fields below are fallback guidance only and must not override local rules:
     ```yaml
     ---
     type: Concept / Article / Project / MOC / Area
