@@ -4,7 +4,7 @@ import json
 import argparse
 from pathlib import Path
 
-CONFIG_DIR = Path.home() / ".config" / "obsidian-vault"
+CONFIG_DIR = Path.home() / ".config" / "obsidian-knowledge-manager"
 SAVED_PATH_FILE = CONFIG_DIR / "path.txt"
 
 def get_platform_obsidian_json():

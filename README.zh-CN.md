@@ -1,4 +1,4 @@
-# Obsidian Vault Skill：面向 AI Coding Agent 的 Obsidian 知识库技能
+# Obsidian Knowledge Manager：面向 AI Coding Agent 的 Obsidian 知识库管理技能
 
 [English](README.md)
 
@@ -27,7 +27,7 @@ obsidian-vault-skill/
 ├── AGENTS.md                         # 可复制到 Obsidian vault 根目录的规则模板
 ├── references/
 │   └── definition-notes.md           # 定义笔记的共享工作规范
-├── obsidian-vault/
+├── obsidian-knowledge-manager/
 │   ├── SKILL.md                      # 主 Obsidian skill
 │   └── scripts/detect_vault.py       # Vault 检测和路径缓存脚本
 └── obsidian-definition-notes/
@@ -61,7 +61,7 @@ obsidian-vault-skill/
 帮我把这组专业术语做成定义笔记，并连接到已有的 Obsidian 笔记。
 ```
 
-主 `obsidian-vault` skill 也会自动把这类请求路由到定义笔记流程。
+主 `obsidian-knowledge-manager` skill 也会自动把这类请求路由到定义笔记流程。
 
 ### YAML 字段规则
 
@@ -107,10 +107,10 @@ updated: 2026-07-15T00:00
 
 ### 2. 安装主 skill
 
-将 `obsidian-vault/` 安装到 Agent 的 skill 目录。例如 Codex：
+将 `obsidian-knowledge-manager/` 安装到 Agent 的 skill 目录。例如 Codex：
 
 ```bash
-cp -R obsidian-vault ~/.codex/skills/obsidian-vault
+cp -R obsidian-knowledge-manager ~/.codex/skills/obsidian-knowledge-manager
 ```
 
 ### 3. 安装定义笔记子 skill
@@ -125,18 +125,18 @@ cp -R references ~/.codex/skills/references
 ### 4. Vault 检测
 
 ```bash
-python3 ~/.codex/skills/obsidian-vault/scripts/detect_vault.py --get
+python3 ~/.codex/skills/obsidian-knowledge-manager/scripts/detect_vault.py --get
 ```
 
 如果需要手动设置：
 
 ```bash
-python3 ~/.codex/skills/obsidian-vault/scripts/detect_vault.py --set "/path/to/your/vault"
+  python3 ~/.codex/skills/obsidian-knowledge-manager/scripts/detect_vault.py --set "/path/to/your/vault"
 ```
 
 ## 相关文档
 
 - [English README](README.md)
-- [主 Obsidian skill](obsidian-vault/SKILL.md)
+- [主 Obsidian skill](obsidian-knowledge-manager/SKILL.md)
 - [定义笔记子 skill](obsidian-definition-notes/SKILL.md)
 - [定义笔记工作规范](references/definition-notes.md)

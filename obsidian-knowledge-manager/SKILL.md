@@ -1,5 +1,5 @@
 ---
-name: obsidian笔记管理
+name: obsidian-knowledge-manager
 description: |
   根据LLMWiki+OKF+PM3原则，搜索、整理和管理本地 Obsidian 知识库
 ---
@@ -20,16 +20,16 @@ The generator may create or update a terminology MOC/navigation note when there 
 
 The vault location is dynamically detected and cached on the machine. Always query the path before performing operations by executing the detection script:
 ```bash
-python3 /path/to/obsidian-vault/scripts/detect_vault.py --get
+python3 /path/to/obsidian-knowledge-manager/scripts/detect_vault.py --get
 ```
 
 ### Auto-Detection & Memory
 - **Automatic Search**: The script parses Obsidian's native config (`obsidian.json`) or searches common folders (`~/Documents`, `~/Desktop`, `~/`) to find vaults.
 - **Save/Remember Path**: If the user provides a path, save and remember it by running:
   ```bash
-  python3 /path/to/obsidian-vault/scripts/detect_vault.py --set "/path/to/your/vault"
+  python3 /path/to/obsidian-knowledge-manager/scripts/detect_vault.py --set "/path/to/your/vault"
   ```
-  This permanently saves it to `~/.config/obsidian-vault/path.txt`.
+  This permanently saves it to `~/.config/obsidian-knowledge-manager/path.txt`.
 
 ## The Workflow Contract
 

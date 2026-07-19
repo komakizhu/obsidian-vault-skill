@@ -1,4 +1,4 @@
-# Obsidian Vault Skill for AI Coding Agents (LLM-Wiki + OKF + Socratic Friction)
+# Obsidian Knowledge Manager for AI Coding Agents (LLM-Wiki + OKF + PM3)
 
 [简体中文](README.zh-CN.md)
 
@@ -13,7 +13,7 @@ It combines **Andrej Karpathy's LLM-Wiki** concept, **Google's Open Knowledge Fo
 - **Selected OKF Compatibility**: Retains only `creator`, `description`, and `resource` from the generic OKF vocabulary; the vault's local PM3 schema remains authoritative.
 - **Socratic Interaction & Tension Preservation**: Prevents the agent from auto-merging opposing views or overwriting subjective insights. Forces the agent to explicitly report conceptual contradictions and obtain permission before making writes.
 - **PM3 Knowledge-Base Model**: The repository's named organizational model, combining PARA's Projects/Areas/Resources/Archives layout, lightweight MOCs, and the user's 333 principle for directory, tag, and metadata discipline.
-- **Dynamic Vault Path Caching**: Auto-detects local vaults via `obsidian.json` (macOS, Windows, Linux) or directory scanning, caching the path to a standard configuration file (`~/.config/obsidian-vault/path.txt`).
+- **Dynamic Vault Path Caching**: Auto-detects local vaults via `obsidian.json` (macOS, Windows, Linux) or directory scanning, caching the path to (`~/.config/obsidian-knowledge-manager/path.txt`).
 - **Definition Notes Sub-skill**: Generates batches of professional-term notes, searches the vault for related concepts, creates reliable Wikilinks, and proposes a lightweight terminology MOC when direct connections are insufficient.
 
 ### PM3
@@ -31,7 +31,7 @@ obsidian-vault-skill/
 ├── AGENTS.md                # [Template] Vault rules to copy into your Obsidian vault root
 ├── references/
 │   └── definition-notes.md   # Shared workflow and frontmatter rules for definition notes
-├── obsidian-vault/
+├── obsidian-knowledge-manager/
 │   ├── SKILL.md             # Skill instructions loaded by agents
 │   └── scripts/
 │       └── detect_vault.py  # Python script managing path discovery & caching
@@ -41,7 +41,7 @@ obsidian-vault-skill/
 
 ## Definition Notes Sub-skill
 
-The repository includes an independently callable `obsidian-definition-notes` sub-skill for building a connected glossary inside an existing vault.
+The repository includes an independently callable `obsidian-definition-notes` sub-skill for building a connected glossary inside an existing vault. The main skill is `obsidian-knowledge-manager`, an English functional name for local Obsidian knowledge-base management.
 
 ### What it does
 
@@ -60,7 +60,7 @@ Use the skill's directory name as the explicit command where the agent supports 
 /obsidian-definition-notes 关于 SKU 生成一批定义笔记，放到 333 Resources 兴趣资源，并和已有笔记建立链接。
 ```
 
-It can also be invoked implicitly by requests mentioning definition notes, professional terms, glossaries, terminology maps, or connecting newly generated concepts to existing Obsidian notes. The parent `obsidian-vault` skill routes these requests to the same workflow.
+It can also be invoked implicitly by requests mentioning definition notes, professional terms, glossaries, terminology maps, or connecting newly generated concepts to existing Obsidian notes. The parent `obsidian-knowledge-manager` skill routes these requests to the same workflow.
 
 ### Frontmatter priority
 
@@ -101,10 +101,10 @@ The sub-skill writes only after confirmation, records important operations in `L
 3. (Optional) Open the copied `AGENTS.md` in Obsidian and customize the `creator` and other default frontmatter settings.
 
 ### Step 2: Deploy the Detection Script
-1. Place the `detect_vault.py` script somewhere convenient on your machine (e.g. `~/.config/obsidian-vault/scripts/detect_vault.py`).
+1. Place the `detect_vault.py` script somewhere convenient on your machine (e.g. `~/.config/obsidian-knowledge-manager/scripts/detect_vault.py`).
 2. Make it executable:
    ```bash
-   chmod +x ~/.config/obsidian-vault/scripts/detect_vault.py
+   chmod +x ~/.config/obsidian-knowledge-manager/scripts/detect_vault.py
    ```
 
 ---
@@ -117,8 +117,8 @@ Add the redirection instructions to your global or local `CLAUDE.md` (e.g. `~/.c
 ## Obsidian Vault Redirection
 
 Whenever the user mentions their notes, Obsidian, or trigger phrases like "根据我的笔记" / "根据我的ob", follow these instructions:
-1. Run `python3 ~/.config/obsidian-vault/scripts/detect_vault.py --get` to retrieve the active vault path.
-2. Scope your operations and searches to that directory. If no vault is found, prompt the user for the path and save it with `python3 ~/.config/obsidian-vault/scripts/detect_vault.py --set "<path>"`.
+1. Run `python3 ~/.config/obsidian-knowledge-manager/scripts/detect_vault.py --get` to retrieve the active vault path.
+2. Scope your operations and searches to that directory. If no vault is found, prompt the user for the path and save it with `python3 ~/.config/obsidian-knowledge-manager/scripts/detect_vault.py --set "<path>"`.
 3. Read the vault's local rules file at `<vault_path>/AGENTS.md` and follow them strictly.
 ```
 
@@ -127,22 +127,22 @@ Put the custom instructions in your `.cursorrules` or `.windsurfrules` file:
 ```text
 Obsidian Vault Redirection:
 - When matching keywords like "according to my notes" or "根据我的ob":
-  1. Execute `python3 ~/.config/obsidian-vault/scripts/detect_vault.py --get` to retrieve the active vault path.
+  1. Execute `python3 ~/.config/obsidian-knowledge-manager/scripts/detect_vault.py --get` to retrieve the active vault path.
   2. Scope your search and operations to that path.
   3. Load and strictly adhere to `<vault_path>/AGENTS.md` for writing/reading rules.
 ```
 
 ### 3. Gemini / Antigravity
-Copy the `obsidian-vault` directory to your agent's global customizations root (usually `~/.gemini/config/skills/obsidian-vault/`), and add the redirection rule to `~/.gemini/config/AGENTS.md`.
+Copy the `obsidian-knowledge-manager` directory to your agent's global customizations root (usually `~/.gemini/config/skills/obsidian-knowledge-manager/`), and add the redirection rule to `~/.gemini/config/AGENTS.md`.
 
 ### 4. OpenAI Codex
-Install the `obsidian-vault/` directory under Codex's skills directory (for example, `~/.codex/skills/obsidian-vault/`). Codex will discover the skill from its `SKILL.md` metadata and `agents/openai.yaml` UI configuration, where it is displayed as `笔记`. In the skill picker, invoke it as the notes/Obsidian skill; depending on the Codex build, the explicit command may appear as `/笔记` or `$obsidian-vault`. Requests such as `根据我的笔记查一下……` and `把这篇文章整理进我的 Obsidian 知识库` can also invoke it implicitly. If you also use project-level rules, add the following redirection instructions to the workspace `AGENTS.md`:
+Install the `obsidian-knowledge-manager/` directory under Codex's skills directory (for example, `~/.codex/skills/obsidian-knowledge-manager/`). Codex will discover the skill from its `SKILL.md` metadata and `agents/openai.yaml` UI configuration, where it is displayed as **Obsidian Knowledge Manager**. Invoke it explicitly as `$obsidian-knowledge-manager`; requests such as `根据我的笔记查一下……` and `把这篇文章整理进我的 Obsidian 知识库` can also invoke it implicitly. If you also use project-level rules, add the following redirection instructions to the workspace `AGENTS.md`:
 ```markdown
 ## Obsidian Vault Redirection
 
 Whenever the user mentions their notes, Obsidian, or trigger phrases like "根据我的笔记" / "根据我的ob", follow these instructions:
-1. Run `python3 ~/.config/obsidian-vault/scripts/detect_vault.py --get` to retrieve the active vault path.
-2. Scope your operations and searches to that directory. If no vault is found, prompt the user for the path and save it with `python3 ~/.config/obsidian-vault/scripts/detect_vault.py --set "<path>"`.
+1. Run `python3 ~/.config/obsidian-knowledge-manager/scripts/detect_vault.py --get` to retrieve the active vault path.
+2. Scope your operations and searches to that directory. If no vault is found, prompt the user for the path and save it with `python3 ~/.config/obsidian-knowledge-manager/scripts/detect_vault.py --set "<path>"`.
 3. Read the vault's local rules file at `<vault_path>/AGENTS.md` and follow them strictly.
 ```
 
