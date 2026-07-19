@@ -8,6 +8,10 @@ It combines **Andrej Karpathy's LLM-Wiki** concept, **Google's Open Knowledge Fo
 
 ---
 
+## PM3 Knowledge-Base Model
+
+This skill follows **PM3: PARA + MOC + 333**. PARA organizes work into Projects, Areas, Resources, and Archives; lightweight MOCs provide navigation; and the 333 principle keeps folder depth, tag depth, metadata growth, and note structure under control. The vault's own `AGENTS.md` remains authoritative, so PM3 guides organization without overriding local conventions.
+
 ## Key Features
 
 - **Selected OKF Compatibility**: Retains only `creator`, `description`, and `resource` from the generic OKF vocabulary; the vault's local PM3 schema remains authoritative.
