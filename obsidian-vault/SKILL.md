@@ -1,7 +1,7 @@
 ---
-name: Obsidian 库
+name: obsidian笔记管理
 description: |
-  管理和分析用户的本地 Obsidian 库，同时保留库的 PM3 规则、链接、元数据、矛盾以及用户审核边界。当用户提到 Obsidian、他们的库、笔记、知识库、个人知识管理、MOC、PARA、PM3，或要求搜索、查询、阅读、总结、整理、导入、创建、更新或管理笔记时使用。支持中文口语化触发（如“根据我的笔记”、“管理我的知识库”等）以及对应的英文请求。
+  根据LLMWiki+OKF+PM3原则，搜索、整理和管理本地 Obsidian 知识库
 ---
 
 # Obsidian 库
